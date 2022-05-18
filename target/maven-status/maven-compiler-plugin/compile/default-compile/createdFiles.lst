@@ -1,0 +1,6 @@
+com\test\project\repo\RegistrationRepo.class
+com\test\project\service\RegistrationService.class
+com\test\project\controller\RegisterController.class
+com\test\project\model\RegistrationModel.class
+com\test\project\TestProjectApp1Application.class
+com\test\project\dto\RegistrationDto.class

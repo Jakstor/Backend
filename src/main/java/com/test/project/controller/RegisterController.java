@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.project.dto.EmailLoginDTO;
 import com.test.project.dto.RegistrationDto;
 import com.test.project.model.RegistrationModel;
 import com.test.project.service.RegistrationService;
@@ -40,7 +41,7 @@ public class RegisterController {
 	}
 	
 	@GetMapping("/email-login")
-	public boolean emailLogin(@RequestHeader String emailId, @RequestHeader String password) {
+	public EmailLoginDTO emailLogin(@RequestHeader String emailId, @RequestHeader String password) {
 		return service.emailLogin(emailId, password);
 	}
 	

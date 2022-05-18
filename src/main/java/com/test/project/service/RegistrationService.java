@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.project.dto.EmailLoginDTO;
 import com.test.project.dto.RegistrationDto;
 import com.test.project.exception.EmailIdExistException;
 import com.test.project.model.RegistrationModel;
@@ -44,6 +45,7 @@ public class RegistrationService {
 			regModel.setPhnNum(Long.parseLong(regDto.getPhone()));
 			regModel.setPswd(regDto.getConfirmPassword());
 			repo.save(regModel);
+			fetchAllData();
 			return regModel.getRgstrnId();
 		}
 		else {
@@ -61,12 +63,19 @@ public class RegistrationService {
 		}
 	}
 	
-	public boolean emailLogin(String email, String password) {
+	public EmailLoginDTO emailLogin(String email, String password) {
 		if(emailMap.get(email).equals(password)) {
-			return true;
+			RegistrationModel regModel = repo.findByEmlId(email);
+			EmailLoginDTO emaillogin = new EmailLoginDTO();
+			emaillogin.setLogin(true);
+			emaillogin.setUserName(regModel.getFrstNm());
+			return emaillogin;
 		}
 		else {
-			return false;
+			EmailLoginDTO emaillogin = new EmailLoginDTO();
+			emaillogin.setLogin(false);
+			emaillogin.setUserName(null);
+			return emaillogin;
 		}
 	}
 	
